@@ -1,1 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
+@import "video.js/dist/video-js.css";
+
+.video-js .vjs-tech{
+    position: unset !important; // remove default css of videojs
+}
