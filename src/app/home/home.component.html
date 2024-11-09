@@ -10,34 +10,35 @@
     <!-- Display progress or result -->
     <div *ngIf="uploadProgress">{{ uploadProgress }}</div>
   
-        <ng-container *ngIf="uploadResult">
+    <ng-container *ngIf="uploadResult">
 
-            <h3>Upload Success!</h3>
-            <pre>{{ uploadResult | json }}</pre>
+        <h3>Upload Success!</h3>
+        <pre>{{ uploadResult | json }}</pre>
 
-            <div style="display:flex;flex-direction:column; align-items:center;gap:1rem;width:100%;">
+        <div style="display:flex;flex-direction:column; align-items:center;gap:1rem;width:100%;">
 
-                <!-- Adaptive HLS Video Player -->
-                <div *ngIf="uploadResult.masterPlaylistUrl"  style="display:flex;flex-direction:column; align-items:center;gap:1rem;width:100%;">
-                    <h4>Adaptive HLS Player</h4>
-                    <div> {{ uploadResult.masterPlaylistUrl }}</div>
-                    <video id="video-player-master" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" style="width:100%;height:auto;">
-                    <source [src]="uploadResult.masterPlaylistUrl" type="application/x-mpegURL" />
-                    Your browser does not support HLS playback.
-                    </video>
-                </div>
-            
-                <!-- Display HLS Video Players -->
-                <div style="display:flex;flex-direction:column; align-items:center;gap:1rem;width:100%;" *ngFor="let stream of uploadResult.hlsStreams">
-                    <h4>{{ stream.resolution }}</h4>
-                    <video style="width:100%;height:100%;" id="video-player-{{stream.resolution}}" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto">
-                    <source [src]="stream.hlsUrl" type="application/x-mpegURL" />
-                    Your browser does not support HLS playback.
-                    </video>
-                </div>
-
+            <!-- Adaptive HLS Video Player -->
+            <div *ngIf="uploadResult.masterPlaylistUrl"  style="display:flex;flex-direction:column; align-items:center;gap:1rem;width:100%;">
+                <h4>Adaptive HLS Player</h4>
+                <div> {{ uploadResult.masterPlaylistUrl }}</div>
+                <video id="video-player-master" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" style="width:100%;height:auto;">
+                <source [src]="uploadResult.masterPlaylistUrl" type="application/x-mpegURL" />
+                Your browser does not support HLS playback.
+                </video>
+            </div>
+        
+            <!-- Display HLS Video Players -->
+            <div style="display:flex;flex-direction:column; align-items:center;gap:1rem;width:100%;" *ngFor="let stream of uploadResult.hlsStreams">
+                <h4>{{ stream.resolution }}</h4>
+                <video style="width:100%;height:100%;" id="video-player-{{stream.resolution}}" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto">
+                <source [src]="stream.hlsUrl" type="application/x-mpegURL" />
+                Your browser does not support HLS playback.
+                </video>
             </div>
 
-        </ng-container>
+        </div>
+
+    </ng-container>
+    
   </div>
   
