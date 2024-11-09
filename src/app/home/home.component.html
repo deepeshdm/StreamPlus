@@ -1,0 +1,27 @@
+<div>
+    <h2>Upload Video</h2>
+  
+    <!-- File input for selecting the video -->
+    <input type="file" (change)="onFileSelected($event)" accept="video/*">
+  
+    <!-- Upload button to trigger the upload action -->
+    <button (click)="onUpload()">Upload</button>
+  
+    <!-- Display progress or result -->
+    <div *ngIf="uploadProgress">{{ uploadProgress }}</div>
+  
+    <div *ngIf="uploadResult">
+      <h3>Upload Success!</h3>
+      <pre>{{ uploadResult | json }}</pre>
+  
+      <!-- Display HLS Video Players -->
+      <div *ngFor="let stream of uploadResult.hlsStreams">
+        <h4>{{ stream.resolution }}</h4>
+        <video id="video-player-{{stream.resolution}}" class="video-js vjs-default-skin" controls>
+          <source [src]="stream.hlsUrl" type="application/x-mpegURL" />
+          Your browser does not support HLS playback.
+        </video>
+      </div>
+    </div>
+  </div>
+  
