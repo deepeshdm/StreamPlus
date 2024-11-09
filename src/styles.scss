@@ -1,5 +1,10 @@
 @import "video.js/dist/video-js.css";
 
+html,body{
+    margin: 0;
+    padding: 0;
+}
+
 .video-js .vjs-tech{
     position: unset !important; // remove default css of videojs
 }
