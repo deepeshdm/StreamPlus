@@ -54,7 +54,7 @@ export class HomeComponent implements AfterViewInit {
   // Method to hit the API endpoint for uploading the video
   uploadVideo(formData: FormData): Observable<any> {
     const headers = new HttpHeaders();
-    return this.http.post<any>( environment.nodeapi + '/upload', formData, { headers });
+    return this.http.post<any>( environment.nodeapi + '/upload-adaptive', formData, { headers });
   }
 
   // Initialize Video.js players after the video list is populated
@@ -62,19 +62,22 @@ export class HomeComponent implements AfterViewInit {
 
     if (!this.uploadResult || !this.uploadResult.hlsStreams) return;
 
+    // Initialize Master Playlist
+    if(this.uploadResult.masterPlaylistUrl){
+      console.log(this.uploadResult.masterPlaylistUrl)
+      const player = videojs(`video-player-master`);
+      player.ready(() => {
+        player.play();
+      });
+    }
+
     this.uploadResult.hlsStreams.forEach((stream: any) => {
-
-      console.log("NODEAPI : ", environment.nodeapi)
-      
-      // Dynamically add the host name (where HLS segments are stored)
-      // stream.hlsUrl = environment.nodeapi + stream.hlsUrl;
-      console.log(stream.hlsUrl);
-
       // Initialize Video.js player for each HLS stream
       const player = videojs(`video-player-${stream.resolution}`);
       player.ready(() => {
         player.play();
       });
+
     });
 
   }
