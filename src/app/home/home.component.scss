@@ -151,23 +151,36 @@
     margin-top: 20px;
 }
 
-.spinner {
-    border: 4px solid rgba(0, 0, 0, 0.1);
-    border-left-color: #007bff;
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    animation: spin 1s linear infinite;
+
+
+/* General styling for the upload button */
+.upload-btn {
+    display: flex;
+    align-items:center;
+    gap: 1rem;
+    position: relative;
+    padding: 12px 30px;
+    font-size: 16px;
+    color: white;
+    background-color: #007aff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
 }
 
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+.upload-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
 }
+
+/* Hover effects for button when not uploading */
+.upload-btn:not(:disabled):hover {
+    background-color: #005c99;
+    transform: scale(1.05);
+}
+
 
 
 

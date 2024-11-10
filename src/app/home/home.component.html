@@ -13,10 +13,11 @@
     <input type="file" (change)="onFileSelected($event)" accept="video/*">
     
     <!-- Upload button with spinner -->
-    <button style="display:flex;gap:1rem;align-items:center;" (click)="onUpload()" [disabled]="isUploading">
-        <div *ngIf="isUploading" class="spinner"></div> <!-- Spinner inside the button -->
-        <div>Upload</div>
+    <button class="upload-btn" (click)="onUpload()" [disabled]="isUploading">
+        <div class="spinner" *ngIf="isUploading"></div>
+        <div> {{ !isUploading ? 'Upload' : 'Processing...' }} </div>
     </button>
+    
     
     <!-- Display error messages -->
     <div style="text-align:center;" *ngIf="uploadProgress != 'Upload successful!' && !isUploading">{{ uploadProgress }}</div>
