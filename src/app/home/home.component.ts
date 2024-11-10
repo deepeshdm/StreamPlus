@@ -17,7 +17,7 @@ export class HomeComponent implements AfterViewInit {
   uploadProgress: string = '';
   uploadResult: any;
   isUploading:any;
-  isGridView = false;  // Default to column view
+  isGridView = true; 
 
   constructor(private http: HttpClient, private cdRef: ChangeDetectorRef) { }
 

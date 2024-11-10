@@ -24,14 +24,8 @@
     
     <!-- View Toggle Button -->
      <div style="display:flex;align-items:center;justify-content:end;" *ngIf="uploadResult && uploadResult.hlsStreams">
-        <label class='toggle-label'>
-            <input type='checkbox' (change)="toggleView()" />
-                <span class='back'>
-                   <span class='toggle'></span>
-                    <span class='label on'>Grid</span>
-                   <span class='label off'>Column</span>  
-               </span>
-        </label>
+        <span> {{ isGridView ? 'Grid' : 'Column' }} </span>
+        <input type="checkbox" style="width:1.25rem;height:1.25rem;cursor:pointer;" (change)="toggleView()" />
      </div>
 
     <!-- Upload Result Section -->
