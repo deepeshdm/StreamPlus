@@ -2,7 +2,9 @@
 :host {
     display: block;
     min-height: 100vh;
-    background: linear-gradient(to bottom, #1d1d1f, #2c2c2e); /* Dark gradient background */
+    // background: linear-gradient(to bottom, #1d1d1f, #2c2c2e);
+    background: linear-gradient(to bottom, #323232 0%, #3F3F3F 40%, #1C1C1C 150%), linear-gradient(to top, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.25) 200%);
+    background-blend-mode: multiply;
     color: #fff; /* White text for contrast */
     font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     padding: 2rem;
