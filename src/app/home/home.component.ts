@@ -16,6 +16,7 @@ export class HomeComponent implements AfterViewInit {
   selectedFile: File | null = null;
   uploadProgress: string = '';
   uploadResult: any;
+  isUploading:any;
 
   constructor(private http: HttpClient, private cdRef: ChangeDetectorRef) { }
 
@@ -32,11 +33,13 @@ export class HomeComponent implements AfterViewInit {
       // Prepare the form data for the file upload
       const formData = new FormData();
       formData.append('video', this.selectedFile, this.selectedFile.name);
+      this.isUploading = true;
 
       // Send the request to the server using Angular's HttpClient
       this.uploadVideo(formData).subscribe(
         (response) => {
           this.uploadResult = response;
+          this.isUploading = false;
           this.uploadProgress = 'Upload successful!';
           this.cdRef.detectChanges(); // Ensures the DOM is updated
           this.initVideoPlayers();
