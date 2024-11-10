@@ -96,4 +96,9 @@ export class HomeComponent implements AfterViewInit {
     this.initVideoPlayers();
   }
 
+  repo(){
+    const url = "https://github.com/deepeshdm/StreamPlus"
+    window.open(url, '_blank')
+  }
+
 }
