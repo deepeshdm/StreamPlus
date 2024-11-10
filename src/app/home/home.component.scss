@@ -186,4 +186,73 @@
 
 
 
-
+.toggle-label {
+    cursor: pointer;
+    position: relative;
+    display: block;
+    width: 120px;  /* Reduced width */
+    height: 40px;  /* Reduced height */
+    margin-top: 8px;
+    border: 1px solid #808080;
+  }
+  
+  .toggle-label input[type=checkbox] { 
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .toggle-label input[type=checkbox] + .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #ed1c24; /* Red background */
+    transition: background 150ms linear;  
+  }
+  
+  .toggle-label input[type=checkbox]:checked + .back {
+    background: #00a651; /* Green background when checked */
+  }
+  
+  .toggle-label input[type=checkbox] + .back .toggle {
+    display: block;
+    position: absolute;
+    content: ' ';
+    background: #fff;
+    width: 50%;  /* Width of the toggle knob */
+    height: 100%;
+    transition: margin 150ms linear;
+    border: 1px solid #808080;
+    border-radius: 0;
+  }
+  
+  .toggle-label input[type=checkbox]:checked + .back .toggle {
+    margin-left: 50%;  /* Shift the knob to the right when checked */
+  }
+  
+  .toggle-label .label {
+    display: block;
+    position: absolute;
+    width: 50%;
+    color: #ddd;
+    line-height: 40px;  /* Adjusted line height */
+    text-align: center;
+    font-size: 1em;  /* Reduced font size */
+  }
+  
+  .toggle-label .label.on { left: 0px; }
+  .toggle-label .label.off { right: 0px; }
+  
+  .toggle-label input[type=checkbox]:checked + .back .label.on {
+    color: #fff;
+  }
+  
+  .toggle-label input[type=checkbox] + .back .label.off {
+    color: #fff;
+  }
+  
+  .toggle-label input[type=checkbox]:checked + .back .label.off {
+    color: #ddd;
+  }
+  

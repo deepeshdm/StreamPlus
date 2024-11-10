@@ -23,7 +23,16 @@
     <div style="text-align:center;" *ngIf="uploadProgress != 'Upload successful!' && !isUploading">{{ uploadProgress }}</div>
     
     <!-- View Toggle Button -->
-    <button (click)="toggleView()" style="margin-top: 20px;">Toggle View</button>
+     <div style="display:flex;align-items:center;justify-content:end;" *ngIf="uploadResult && uploadResult.hlsStreams">
+        <label class='toggle-label'>
+            <input type='checkbox' (change)="toggleView()" />
+                <span class='back'>
+                   <span class='toggle'></span>
+                    <span class='label on'>Grid</span>
+                   <span class='label off'>Column</span>  
+               </span>
+        </label>
+     </div>
 
     <!-- Upload Result Section -->
     <ng-container *ngIf="uploadResult">
