@@ -17,12 +17,17 @@ export class HomeComponent implements AfterViewInit {
   uploadProgress: string = '';
   uploadResult: any;
   isUploading:any;
+  isGridView = false;  // Default to column view
 
   constructor(private http: HttpClient, private cdRef: ChangeDetectorRef) { }
 
   // Handle file selection
   onFileSelected(event: any): void {
     this.selectedFile = event.target.files[0];
+  }
+
+  toggleView() {
+    this.isGridView = !this.isGridView;
   }
 
   // Upload video directly from the component

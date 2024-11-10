@@ -1,36 +1,43 @@
 <div style="width: 100%; height: 100%;">
+
     <!-- Main Header -->
-    <h2>Adaptive HLS Demo Project</h2>
-    
+    <h2>Adaptive HLS Demo Project 🎬🚀</h2>
+
     <!-- Project Description -->
-    <p style="text-align: center; max-width: 800px; margin: 0 auto; font-size: 1.1rem; line-height: 1.6;">
-        Welcome to the Adaptive HLS Demo project! This is where the magic happens — upload your video, and watch as it gets transcoded into multiple resolutions (240p, 360p, 720p, 1080p). Each resolution is split into bite-sized segments, ensuring lightning-fast loading and smooth playback. Thanks to adaptive streaming, your video adjusts on the fly to match your viewers' internet speed and device capabilities. Dive into the demo below to see how HLS keeps your video crystal clear no matter the connection.
-    </p>    
-  
+    <p style="text-align: center; max-width: 80%; margin: 0 auto; font-size: 1.1rem; line-height: 1.6;">
+        Welcome to the Adaptive HLS Demo project! 🎥✨ This is where the magic happens — upload your video, and watch as it gets transcoded into multiple resolutions (240p, 360p, 720p, 1080p). 📽️ Each resolution is split into bite-sized segments, ensuring lightning-fast loading ⚡ and smooth playback 🎶. Thanks to adaptive streaming, your video adjusts on the fly to match your viewers' internet speed 🌐 and device capabilities 📱💻. Dive into the demo below to see how HLS keeps your video crystal clear 🔮 no matter the connection! 🌟
+    </p>
+
     <!-- File input for selecting the video -->
     <h3>Select and Upload Your Video</h3>
     <input type="file" (change)="onFileSelected($event)" accept="video/*">
-  
+    
     <!-- Upload button with spinner -->
     <button style="display:flex;gap:1rem;align-items:center;" (click)="onUpload()" [disabled]="isUploading">
-      <div *ngIf="isUploading" class="spinner"></div> <!-- Spinner inside the button -->
-      <div>Upload</div>
+        <div *ngIf="isUploading" class="spinner"></div> <!-- Spinner inside the button -->
+        <div>Upload</div>
     </button>
-  
+    
     <!-- Display error messages -->
-    <div style="text-align:center;" *ngIf="uploadProgress!='Upload successful!' && !isUploading">{{ uploadProgress }}</div>
-  
+    <div style="text-align:center;" *ngIf="uploadProgress != 'Upload successful!' && !isUploading">{{ uploadProgress }}</div>
+    
+    <!-- View Toggle Button -->
+    <button (click)="toggleView()" style="margin-top: 20px;">Toggle View</button>
+
     <!-- Upload Result Section -->
     <ng-container *ngIf="uploadResult">
-        <pre>{{ uploadResult | json }}</pre>
+
+        <!-- <pre>{{ uploadResult | json }}</pre> -->
 
         <!-- Adaptive HLS Video Player Section -->
-        <div class="video-container">
+        <div [ngClass]="isGridView ? 'grid-view' : 'column-view'" class="video-container">
             <!-- Master Playlist Video -->
             <div *ngIf="uploadResult.masterPlaylistUrl" class="video-player-wrapper">
                 <h4>Master Playlist HLS Player</h4>
-                <p style="color: #007aff; font-size: 1rem;">This is the main HLS stream that adapts to different bitrates.</p>
-                <video id="video-player-master" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" style="width: 100%; height: auto;">
+                <p style="color: #007aff; font-size: 1rem;" *ngIf="!isGridView">This is the main HLS stream that adapts to different bitrates.</p>
+                <p style="color: #007aff; font-size: 1rem;" *ngIf="isGridView">Adaptive HLS adapts to different bitrates.</p>
+                <video id="video-player-master" class="video-js vjs-default-skin vjs-big-play-centered" 
+                controls preload="auto" style="width: 100%; height: auto; border-radius:20px;">
                     <source [src]="uploadResult.masterPlaylistUrl" type="application/x-mpegURL" />
                     Your browser does not support HLS playback.
                 </video>
@@ -40,7 +47,8 @@
             <div *ngFor="let stream of uploadResult.hlsStreams" class="video-player-wrapper">
                 <h4>{{ stream.resolution }} HLS Player</h4>
                 <p style="color: #fff; font-size: 0.9rem;">Watch this video at {{ stream.resolution }} resolution.</p>
-                <video id="video-player-{{ stream.resolution }}" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" style="width: 100%; height: auto;">
+                <video id="video-player-{{ stream.resolution }}" class="video-js vjs-default-skin vjs-big-play-centered" 
+                controls preload="auto" style="width: 100%; height: auto; border-radius:20px;">
                     <source [src]="stream.hlsUrl" type="application/x-mpegURL" />
                     Your browser does not support HLS playback.
                 </video>
@@ -48,3 +56,4 @@
         </div>
     </ng-container>
 </div>
+
